@@ -68,6 +68,7 @@ public class Register extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("username", username);
+        session.setAttribute("points", 0);
 
         res.sendRedirect("index.html");
     }

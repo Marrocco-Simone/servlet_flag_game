@@ -42,7 +42,7 @@ public class Leaderboard extends HttpServlet {
             out.println("<tr>");
                 out.println("<td>"+rank+"</td>");
                 out.println("<td>"+user.username+"</td>");
-                out.println("<td>"+user.points+"</td>");
+                out.println("<td>"+user.best_points+"</td>");
             out.println("</tr>");
 
             rank++;

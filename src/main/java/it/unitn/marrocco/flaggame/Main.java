@@ -43,9 +43,9 @@ public class Main extends HttpServlet {
         return users;
     }
 
-    public void getFooter(PrintWriter out, String username, int points) {
+    public void getFooter(PrintWriter out, String username) {
         out.println("<footer>");
-        out.println("<span>" + username + " (points: " + points + ")</span>");
+        out.println("<span>" + username + "</span>");
         out.println("<span> <a href='leaderboard'>LeaderBoard</a> </span>");
         out.println("</footer>");
     }
@@ -58,21 +58,14 @@ public class Main extends HttpServlet {
             res.sendRedirect("login");
             return;
         }
-
-        List<User> users = getUsersFromContext(context);
-        int points = 0;
-        for (User user : users) {
-            if (user.username.equals(username)) {
-                points = user.points;
-                break;
-            }
-        }
+        int points = (int) session.getAttribute("points");
 
         PrintWriter out = res.getWriter();
         addHtmlFragment(req, res, "fragments/html_file_start.html");
-        getFooter(out, username, points);
+        getFooter(out, username);
 
-        out.println("Let's Play");
+        out.println("<p>Points: " + points + "</p>");
+        out.println("<a href='game'>Let's Play</a>");
 
         addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
