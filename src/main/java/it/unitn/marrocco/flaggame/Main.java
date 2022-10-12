@@ -50,23 +50,28 @@ public class Main extends HttpServlet {
         out.println("</footer>");
     }
 
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    public synchronized UserSession getUserSession(HttpServletRequest req, HttpServletResponse res) throws IOException {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         if(username == null) {
             res.sendRedirect("login");
-            return;
+            return null;
         }
         int points = (int) session.getAttribute("points");
+        return new UserSession(username, points);
+    }
+
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        UserSession user = getUserSession(req, res);
+        if (user == null) return;
 
         PrintWriter out = res.getWriter();
         addHtmlFragment(req, res, "fragments/html_file_start.html");
-        getFooter(out, username);
+        getFooter(out, user.username);
 
-        out.println("<p>Points: " + points + "</p>");
+        out.println("<p>Points: " + user.points + "</p>");
         out.println("<a href='game'>Let's Play</a>");
-        // out.println("<object data='flags/Rome.svg' width='150' height='100'> </object>");
 
         addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
