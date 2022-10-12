@@ -23,10 +23,6 @@ public class Main extends HttpServlet {
         List<User> users = new ArrayList<>();
         // admin account
         users.add(new User("admin", "admin"));
-        users.add(new User("first", "admin"));
-        users.get(1).points = 12;
-        users.add(new User("second", "admin"));
-        users.get(2).points = 7;
 
         synchronized (this) {
             context = getServletContext();
