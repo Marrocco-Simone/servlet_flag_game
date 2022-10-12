@@ -43,14 +43,14 @@ public class Main extends HttpServlet {
         return users;
     }
 
-    public void getFooter(PrintWriter out, String username) {
+    public static void getFooter(PrintWriter out, String username) {
         out.println("<footer>");
         out.println("<span>" + username + "</span>");
         out.println("<span> <a href='leaderboard'>LeaderBoard</a> </span>");
         out.println("</footer>");
     }
 
-    public synchronized UserSession getUserSession(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    public static synchronized UserSession getUserSession(HttpServletRequest req, HttpServletResponse res) throws IOException {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         if(username == null) {
