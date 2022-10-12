@@ -11,7 +11,6 @@ import java.util.*;
 
 @WebServlet(name = "game", value = "/game")
 public class Game extends HttpServlet {
-    // out.println("<object data='flags/Rome.svg' width='150' height='100'> </object>");
     int CAPITALS_TO_GUESS = 3;
 
     public ArrayList<String> initCapitals(){
@@ -65,6 +64,18 @@ public class Game extends HttpServlet {
         return chosen_capitals;
     }
 
+    public void printChosenCapitals(PrintWriter out, ArrayList<String> chosen_capitals) {
+        int counter = 0;
+        for(String capital: chosen_capitals){
+            out.println("<div>");
+            out.println("<img src='flags/"+capital+".png' width='150' height='100'></img>");
+            out.println("<label>Guess<input name='capital_"+counter+"' type='number'/></label>");
+            out.println("</div>");
+
+            counter++;
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         UserSession user = Main.getUserSession(req, res);
@@ -78,7 +89,7 @@ public class Game extends HttpServlet {
         printCapitalsList(out, capitals);
 
         ArrayList<String> chosen_capitals = getChosenCapitals(capitals);
-        printCapitalsList(out, chosen_capitals);
+        printChosenCapitals(out, chosen_capitals);
         Main.addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
     }
