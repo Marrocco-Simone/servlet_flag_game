@@ -23,6 +23,10 @@ public class Main extends HttpServlet {
         List<User> users = new ArrayList<>();
         // admin account
         users.add(new User("admin", "admin"));
+        users.add(new User("first", "admin"));
+        users.get(1).points = 12;
+        users.add(new User("second", "admin"));
+        users.get(2).points = 7;
 
         synchronized (this) {
             context = getServletContext();
@@ -63,7 +67,11 @@ public class Main extends HttpServlet {
 
         PrintWriter out = res.getWriter();
         addHtmlFragment(req, res, "fragments/html_file_start.html");
-        out.println("<footer>" + username + " (points: " + points + ")</footer>");
+        // footer
+        out.println("<footer>");
+        out.println("<span>" + username + " (points: " + points + ")</span>");
+        out.println("<span> <a href='leaderboard'>LeaderBoard</a> </span>");
+        out.println("</footer>");
 
         /* for (User user : users) {
             out.println(user);
