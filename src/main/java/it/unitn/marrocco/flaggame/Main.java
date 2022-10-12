@@ -33,23 +33,35 @@ public class Main extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         HttpSession session = req.getSession();
-        if(session.getAttribute("username") == null) {
+        String username = (String) session.getAttribute("username");
+        if(username == null) {
             res.sendRedirect("login");
             return;
         }
 
-        PrintWriter out = res.getWriter();
-        out.println(session.getAttribute("username"));
-        out.println(session.getId());
-
         @SuppressWarnings("unchecked")
         List<User> users = (List<User>) context.getAttribute("users");
+        int points = 0;
         for (User user : users) {
-            out.println(user);
+            if (user.username.equals(username)) {
+                points = user.points;
+                break;
+            }
         }
 
+        PrintWriter out = res.getWriter();
+        addHtmlFragment(req, res, "fragments/html_file_start.html");
+        out.println("<footer>" + username + " (points: " + points + ")</footer>");
+
+        /* for (User user : users) {
+            out.println(user);
+        } */
+
+        out.println("Let's Play");
+
+        addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
     }
 }
