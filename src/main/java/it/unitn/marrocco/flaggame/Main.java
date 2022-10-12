@@ -43,6 +43,13 @@ public class Main extends HttpServlet {
         return users;
     }
 
+    public void getFooter(PrintWriter out, String username, int points) {
+        out.println("<footer>");
+        out.println("<span>" + username + " (points: " + points + ")</span>");
+        out.println("<span> <a href='leaderboard'>LeaderBoard</a> </span>");
+        out.println("</footer>");
+    }
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         HttpSession session = req.getSession();
@@ -63,15 +70,7 @@ public class Main extends HttpServlet {
 
         PrintWriter out = res.getWriter();
         addHtmlFragment(req, res, "fragments/html_file_start.html");
-        // footer
-        out.println("<footer>");
-        out.println("<span>" + username + " (points: " + points + ")</span>");
-        out.println("<span> <a href='leaderboard'>LeaderBoard</a> </span>");
-        out.println("</footer>");
-
-        /* for (User user : users) {
-            out.println(user);
-        } */
+        getFooter(out, username, points);
 
         out.println("Let's Play");
 
