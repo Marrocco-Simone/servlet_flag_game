@@ -39,6 +39,12 @@ public class Login extends HttpServlet {
         sendLoginForm(req, res, "");
     }
 
+    public static synchronized void setSession(HttpServletRequest req, String username){
+        HttpSession session = req.getSession();
+        session.setAttribute("username", username);
+        session.setAttribute("points", 0);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         String username = req.getParameter("username");
@@ -66,9 +72,7 @@ public class Login extends HttpServlet {
             return;
         }
 
-        HttpSession session = req.getSession();
-        session.setAttribute("username", username);
-        session.setAttribute("points", 0);
+        setSession(req, username);
 
         res.sendRedirect("index.html");
     }

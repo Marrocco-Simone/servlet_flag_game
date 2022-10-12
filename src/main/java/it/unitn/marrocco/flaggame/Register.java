@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -66,9 +65,7 @@ public class Register extends HttpServlet {
             context.setAttribute("users", users);
         }
 
-        HttpSession session = req.getSession();
-        session.setAttribute("username", username);
-        session.setAttribute("points", 0);
+        Login.setSession(req, username);
 
         res.sendRedirect("index.html");
     }
