@@ -23,6 +23,7 @@ public class Main extends HttpServlet {
         List<User> users = new ArrayList<>();
         // admin account
         users.add(new User("admin", "admin"));
+        users.add(new User("simone", "simone"));
 
         synchronized (this) {
             context = getServletContext();
@@ -35,19 +36,14 @@ public class Main extends HttpServlet {
     }
 
     public static synchronized List<User> getUsersFromContext(ServletContext context) {
-        Object usersAttribute;
-        usersAttribute =  context.getAttribute("users");
-
+        Object usersAttribute =  context.getAttribute("users");
         @SuppressWarnings("unchecked")
         List<User> users = (List<User>) usersAttribute;
         return users;
     }
 
     public static void getFooter(PrintWriter out, String username) {
-        out.println("<footer>");
-        out.println("<span>" + username + "</span>");
-        out.println("<span> <a href='leaderboard'>LeaderBoard</a> </span>");
-        out.println("</footer>");
+        out.println("<footer>" + username + "</footer>");
     }
 
     public static synchronized UserSession getUserSession(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -65,6 +61,10 @@ public class Main extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         UserSession user = getUserSession(req, res);
         if (user == null) return;
+        if (user.username.equals("admin")) {
+            res.sendRedirect("admin");
+            return;
+        }
 
         PrintWriter out = res.getWriter();
         addHtmlFragment(req, res, "fragments/html_file_start.html");

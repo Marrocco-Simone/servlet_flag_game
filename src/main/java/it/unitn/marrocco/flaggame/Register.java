@@ -65,7 +65,7 @@ public class Register extends HttpServlet {
             context.setAttribute("users", users);
         }
 
-        Login.setSession(req, username);
+        Login.setSession(req, username, context);
 
         res.sendRedirect("index.html");
     }

@@ -7,8 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @WebServlet(name = "login", value = "/login")
 public class Login extends HttpServlet {
@@ -39,10 +38,22 @@ public class Login extends HttpServlet {
         sendLoginForm(req, res, "");
     }
 
-    public static synchronized void setSession(HttpServletRequest req, String username){
+    public static synchronized void setSession(HttpServletRequest req, String username, ServletContext context){
         HttpSession session = req.getSession();
         session.setAttribute("username", username);
         session.setAttribute("points", 0);
+
+        Object loggedAttribute =  context.getAttribute("logged");
+        @SuppressWarnings("unchecked")
+        List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
+        if (logged == null) logged = new ArrayList<>();
+
+        for (UserSession user: logged) {
+            if(user.username.equals(username)) return;
+        }
+
+        logged.add(new UserSession(username, 0));
+        context.setAttribute("logged", logged);
     }
 
     @Override
@@ -72,7 +83,7 @@ public class Login extends HttpServlet {
             return;
         }
 
-        setSession(req, username);
+        setSession(req, username, context);
 
         res.sendRedirect("index.html");
     }
