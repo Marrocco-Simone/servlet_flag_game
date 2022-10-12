@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="FlagGame:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>FlagGame</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="FlagGame-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="FlagGame:war exploded" />
+    </root>
+  </artifact>
+</component>
