@@ -24,12 +24,12 @@ public class Register extends HttpServlet {
 
     protected void sendRegisterForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
         PrintWriter out = res.getWriter();
-        Login.addHtmlFragment(req, res, "fragments/html_file_start.html");
+        Main.addHtmlFragment(req, res, "fragments/html_file_start.html");
         if (error_msg != null && error_msg.length() != 0) {
             out.println("<p>"+ error_msg + "</p>");
         }
-        Login.addHtmlFragment(req, res, "fragments/register_form.html");
-        Login.addHtmlFragment(req, res, "fragments/html_file_end.html");
+        Main.addHtmlFragment(req, res, "fragments/register_form.html");
+        Main.addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
     }
 

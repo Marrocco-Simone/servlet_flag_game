@@ -28,6 +28,10 @@ public class Main extends HttpServlet {
         context.setAttribute("users", users);
     }
 
+    public static void addHtmlFragment(HttpServletRequest req, HttpServletResponse res, String fileName) throws IOException, ServletException {
+        req.getRequestDispatcher(fileName).include(req, res);
+    }
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         HttpSession session = req.getSession();
