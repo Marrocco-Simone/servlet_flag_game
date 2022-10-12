@@ -71,7 +71,7 @@ public class Main extends HttpServlet {
         getFooter(out, user.username);
 
         out.println("<p>Points: " + user.points + "</p>");
-        out.println("<a href='game'>Let's Play</a>");
+        out.println("<form action='game'><button>Play</button></form>");
 
         addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
