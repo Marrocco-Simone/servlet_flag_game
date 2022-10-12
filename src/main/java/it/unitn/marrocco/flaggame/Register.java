@@ -19,7 +19,9 @@ public class Register extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        context = getServletContext();
+        synchronized (this) {
+            context = getServletContext();
+        }
     }
 
     protected void sendRegisterForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
@@ -49,8 +51,7 @@ public class Register extends HttpServlet {
             return;
         }
 
-        @SuppressWarnings("unchecked")
-        List<User> users = (List<User>) context.getAttribute("users");
+        List<User> users = Main.getUsersFromContext(context);
 
         // check the user does not already exist
         for (User user : users) {
@@ -61,7 +62,9 @@ public class Register extends HttpServlet {
         }
 
         users.add(new User(username, password));
-        context.setAttribute("users", users);
+        synchronized (this) {
+            context.setAttribute("users", users);
+        }
 
         HttpSession session = req.getSession();
         session.setAttribute("username", username);

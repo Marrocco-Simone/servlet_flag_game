@@ -17,7 +17,9 @@ public class Login extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        context = getServletContext();
+        synchronized (this) {
+            context = getServletContext();
+        }
     }
 
     protected void sendLoginForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
@@ -42,8 +44,7 @@ public class Login extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        @SuppressWarnings("unchecked")
-        List<User> users = (List<User>) context.getAttribute("users");
+        List<User> users = Main.getUsersFromContext(context);
         Iterator<User> iter = users.iterator();
         boolean found = false;
         while (iter.hasNext()) {

@@ -24,12 +24,23 @@ public class Main extends HttpServlet {
         // admin account
         users.add(new User("admin", "admin"));
 
-        context = getServletContext();
-        context.setAttribute("users", users);
+        synchronized (this) {
+            context = getServletContext();
+            context.setAttribute("users", users);
+        }
     }
 
     public static void addHtmlFragment(HttpServletRequest req, HttpServletResponse res, String fileName) throws IOException, ServletException {
         req.getRequestDispatcher(fileName).include(req, res);
+    }
+
+    public static synchronized List<User> getUsersFromContext(ServletContext context) {
+        Object usersAttribute;
+        usersAttribute =  context.getAttribute("users");
+
+        @SuppressWarnings("unchecked")
+        List<User> users = (List<User>) usersAttribute;
+        return users;
     }
 
     @Override
@@ -41,8 +52,7 @@ public class Main extends HttpServlet {
             return;
         }
 
-        @SuppressWarnings("unchecked")
-        List<User> users = (List<User>) context.getAttribute("users");
+        List<User> users = getUsersFromContext(context);
         int points = 0;
         for (User user : users) {
             if (user.username.equals(username)) {
