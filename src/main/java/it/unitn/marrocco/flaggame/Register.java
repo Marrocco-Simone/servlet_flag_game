@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 
 @WebServlet(name = "register", value = "/register")
@@ -50,6 +49,7 @@ public class Register extends HttpServlet {
             return;
         }
 
+        @SuppressWarnings("unchecked")
         List<User> users = (List<User>) context.getAttribute("users");
 
         // check the user does not already exist
@@ -66,6 +66,6 @@ public class Register extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("username", username);
 
-        res.sendRedirect("main");
+        res.sendRedirect("index.html");
     }
 }

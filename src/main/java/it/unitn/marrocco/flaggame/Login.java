@@ -46,6 +46,7 @@ public class Login extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
+        @SuppressWarnings("unchecked")
         List<User> users = (List<User>) context.getAttribute("users");
         Iterator<User> iter = users.iterator();
         boolean found = false;
@@ -71,6 +72,6 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("username", username);
 
-        res.sendRedirect("main");
+        res.sendRedirect("index.html");
     }
 }

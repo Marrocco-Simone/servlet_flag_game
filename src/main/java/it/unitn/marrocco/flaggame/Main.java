@@ -2,7 +2,6 @@ package it.unitn.marrocco.flaggame;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -10,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "main", value = "/main")
+@WebServlet(name = "main", value = "/index.html")
 public class Main extends HttpServlet {
 
     ServletContext context;
@@ -40,6 +39,8 @@ public class Main extends HttpServlet {
         PrintWriter out = res.getWriter();
         out.println(session.getAttribute("username"));
         out.println(session.getId());
+
+        @SuppressWarnings("unchecked")
         List<User> users = (List<User>) context.getAttribute("users");
         for (User user : users) {
             out.println(user);
