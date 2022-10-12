@@ -66,6 +66,7 @@ public class Main extends HttpServlet {
 
         out.println("<p>Points: " + points + "</p>");
         out.println("<a href='game'>Let's Play</a>");
+        // out.println("<object data='flags/Rome.svg' width='150' height='100'> </object>");
 
         addHtmlFragment(req, res, "fragments/html_file_end.html");
         out.close();
