@@ -19,7 +19,7 @@
 </head>
 <body>
     <footer><%=user.username%></footer>
-    <p><%=user.points%></p>
+    <p>Points: <%=user.points%></p>
 
     <form action='game'>
         <button type='submit'>Play</button>
