@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
     <% if (error_msg != null && error_msg.length()>0) { %>

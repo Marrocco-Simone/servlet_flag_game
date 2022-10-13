@@ -15,6 +15,7 @@
 <html>
 <head>
     <title>Admin Page</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
     <table>

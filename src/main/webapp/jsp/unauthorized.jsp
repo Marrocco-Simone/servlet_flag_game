@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Unauthorized</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <h1>Access denied</h1>

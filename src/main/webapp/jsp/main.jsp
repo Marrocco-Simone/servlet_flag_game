@@ -14,7 +14,8 @@
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
     <footer><%=user.username%></footer>

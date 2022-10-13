@@ -29,6 +29,7 @@
 <html>
 <head>
     <title>Flag Game</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
     <footer><%=user.username%></footer>
