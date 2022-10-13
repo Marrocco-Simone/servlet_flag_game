@@ -66,7 +66,7 @@ public class Game extends HttpServlet {
         req.setAttribute("capitals", capitals);
         req.setAttribute("chosen_capitals", chosen_capitals);
 
-        req.getRequestDispatcher("game.jsp").forward(req, res);
+        req.getRequestDispatcher("jsp/game.jsp").forward(req, res);
     }
 
     @Override
