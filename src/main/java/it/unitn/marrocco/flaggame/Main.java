@@ -1,9 +1,7 @@
 package it.unitn.marrocco.flaggame;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -11,23 +9,6 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "main", value = "/index.html")
 public class Main extends HttpServlet {
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        // https://stackoverflow.com/questions/26497241/getservletconfig-getservletcontext-returning-null-value
-        // otherwise config is null
-        super.init(config);
-
-        List<User> users = new ArrayList<>();
-        // admin account
-        users.add(new User("admin", "admin"));
-        users.add(new User("simone", "simone"));
-
-        synchronized (getServletContext()) {
-            ServletContext context = getServletContext();
-            context.setAttribute("users", users);
-        }
-    }
-
     public static void addHtmlFragment(HttpServletRequest req, HttpServletResponse res, String fileName) throws IOException, ServletException {
         req.getRequestDispatcher(fileName).include(req, res);
     }
