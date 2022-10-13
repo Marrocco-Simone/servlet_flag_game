@@ -23,19 +23,19 @@
         <div>
             <label>
                 Username
-                <input name="username" type="text"/>
+                <input name="username" type="text" required/>
             </label>
         </div>
         <div>
             <label>
                 Password
-                <input name="password" type="password"/>
+                <input name="password" type="password" required/>
             </label>
         </div>
         <div>
             <label>
                 Confirm Password
-                <input name="confirm_password" type="password"/>
+                <input name="confirm_password" type="password" required/>
             </label>
         </div>
         <button type="submit">Submit</button>
