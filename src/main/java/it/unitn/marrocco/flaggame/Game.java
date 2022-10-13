@@ -34,21 +34,12 @@ public class Game extends HttpServlet {
     }
 
     public void printCapitalsList(PrintWriter out, ArrayList<String> capitals) {
-        out.println("<table>");
-        out.println("<tr>");
-            out.println("<th>Index</th>");
-            out.println("<th>Capital</th>");
-        out.println("</tr>");
-        int rank = 0;
+        out.println("<p>List of cities</p>");
+        out.println("<ol start='0'>");
         for(String capital: capitals) {
-            out.println("<tr>");
-            out.println("<td>"+rank+"</td>");
-            out.println("<td>"+capital+"</td>");
-            out.println("</tr>");
-
-            rank++;
+            out.println("<li>"+capital+"</li>");
         }
-        out.println("</table>");
+        out.println("</ol>");
     }
 
     public ArrayList<String> getChosenCapitals(ArrayList<String> capitals) {
