@@ -13,7 +13,7 @@ public class ContextListener implements ServletContextListener {
     String FILENAME = "Users.txt";
     public void startNewServer(List<User> users, String error_msg) {
         System.out.println(error_msg + ". Inserting standard users...");
-        users.add(new User("admin", "admin"));
+        users.add(new User(Admin.ADMIN_USERNAME, "admin"));
         users.add(new User("simone", "simone"));
     }
     

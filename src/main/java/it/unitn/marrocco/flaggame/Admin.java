@@ -11,6 +11,8 @@ import java.util.*;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
+    static String ADMIN_USERNAME = "admin";
+
     public List<UserSession> getLoggedUser() {
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
@@ -24,6 +26,12 @@ public class Admin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        UserSession user = Main.getUserSession(req, res);
+        if (user == null) return;
+        if (!user.username.equals(ADMIN_USERNAME)) {
+            //error 401
+        }
+
         List<UserSession> logged = getLoggedUser();
         req.setAttribute("logged", logged);
         req.getRequestDispatcher("jsp/admin.jsp").forward(req, res);

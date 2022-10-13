@@ -31,7 +31,7 @@ public class Main extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         UserSession user = getUserSession(req, res);
         if (user == null) return;
-        if (user.username.equals("admin")) {
+        if (user.username.equals(Admin.ADMIN_USERNAME)) {
             res.sendRedirect("admin");
             return;
         }
