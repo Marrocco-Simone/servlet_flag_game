@@ -7,20 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "register", value = "/register")
 public class Register extends HttpServlet {
     protected void sendRegisterForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
-        PrintWriter out = res.getWriter();
-        Main.addHtmlFragment(req, res, "fragments/html_file_start.html");
-        if (error_msg != null && error_msg.length() != 0) {
-            out.println("<p>"+ error_msg + "</p>");
-        }
-        Main.addHtmlFragment(req, res, "fragments/register_form.html");
-        Main.addHtmlFragment(req, res, "fragments/html_file_end.html");
-        out.close();
+        req.setAttribute("error_msg", error_msg);
+        req.getRequestDispatcher("jsp/register.jsp").forward(req, res);
     }
 
     @Override

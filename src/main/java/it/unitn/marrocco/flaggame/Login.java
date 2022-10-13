@@ -5,21 +5,13 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 @WebServlet(name = "login", value = "/login")
 public class Login extends HttpServlet {
     protected void sendLoginForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
-        PrintWriter out = res.getWriter();
-        Main.addHtmlFragment(req, res, "fragments/html_file_start.html");
-        if (error_msg != null && error_msg.length() != 0) {
-            out.println("<p>"+ error_msg + "</p>");
-        }
-        Main.addHtmlFragment(req, res, "fragments/login_form.html");
-        out.println("<a href='register'>Register New Account</a>");
-        Main.addHtmlFragment(req, res, "fragments/html_file_end.html");
-        out.close();
+        req.setAttribute("error_msg", error_msg);
+        req.getRequestDispatcher("jsp/login.jsp").forward(req, res);
     }
 
     @Override
