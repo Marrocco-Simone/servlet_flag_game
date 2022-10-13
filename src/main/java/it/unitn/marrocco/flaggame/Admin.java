@@ -29,7 +29,9 @@ public class Admin extends HttpServlet {
         UserSession user = Main.getUserSession(req, res);
         if (user == null) return;
         if (!user.username.equals(ADMIN_USERNAME)) {
-            //error 401
+            res.setStatus(401);
+            req.getRequestDispatcher("jsp/unauthorized.jsp").forward(req, res);
+            return;
         }
 
         List<UserSession> logged = getLoggedUser();
