@@ -7,9 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="it.unitn.marrocco.flaggame.UserSession" %>
+<%@ page import="it.unitn.marrocco.flaggame.Main" %>
 <%
-    @SuppressWarnings("unchecked")
-    UserSession user = (UserSession) request.getAttribute("user");
+    UserSession user = Main.getUserSession(request, response);
+    if (user == null) return;
 %>
 <html>
 <head>

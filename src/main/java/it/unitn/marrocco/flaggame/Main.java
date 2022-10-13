@@ -36,7 +36,6 @@ public class Main extends HttpServlet {
             return;
         }
 
-        req.setAttribute("user", user);
         req.getRequestDispatcher("jsp/main.jsp").forward(req, res);
     }
 }
