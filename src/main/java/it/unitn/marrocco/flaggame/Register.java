@@ -1,6 +1,5 @@
 package it.unitn.marrocco.flaggame;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +12,6 @@ import java.util.List;
 
 @WebServlet(name = "register", value = "/register")
 public class Register extends HttpServlet {
-    ServletContext context;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        synchronized (this) {
-            context = getServletContext();
-        }
-    }
-
     protected void sendRegisterForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
         PrintWriter out = res.getWriter();
         Main.addHtmlFragment(req, res, "fragments/html_file_start.html");
@@ -50,7 +39,11 @@ public class Register extends HttpServlet {
             return;
         }
 
-        List<User> users = Main.getUsersFromContext(context);
+        List<User> users;
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
+            users = Main.getUsersFromContext(context);
+        }
 
         // check the user does not already exist
         for (User user : users) {
@@ -61,11 +54,11 @@ public class Register extends HttpServlet {
         }
 
         users.add(new User(username, password));
-        synchronized (this) {
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
             context.setAttribute("users", users);
+            Login.setSession(req, username, context);
         }
-
-        Login.setSession(req, username, context);
 
         res.sendRedirect("index.html");
     }

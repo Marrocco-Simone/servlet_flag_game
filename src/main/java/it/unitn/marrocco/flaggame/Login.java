@@ -1,6 +1,5 @@
 package it.unitn.marrocco.flaggame;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +10,6 @@ import java.util.*;
 
 @WebServlet(name = "login", value = "/login")
 public class Login extends HttpServlet {
-    ServletContext context;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        synchronized (this) {
-            context = getServletContext();
-        }
-    }
-
     protected void sendLoginForm(HttpServletRequest req, HttpServletResponse res, String error_msg) throws IOException, ServletException {
         PrintWriter out = res.getWriter();
         Main.addHtmlFragment(req, res, "fragments/html_file_start.html");
@@ -61,7 +50,11 @@ public class Login extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        List<User> users = Main.getUsersFromContext(context);
+        List<User> users;
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
+            users = Main.getUsersFromContext(context);
+        }
         Iterator<User> iter = users.iterator();
         boolean found = false;
         while (iter.hasNext()) {
@@ -83,7 +76,10 @@ public class Login extends HttpServlet {
             return;
         }
 
-        setSession(req, username, context);
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
+            setSession(req, username, context);
+        }
 
         res.sendRedirect("index.html");
     }

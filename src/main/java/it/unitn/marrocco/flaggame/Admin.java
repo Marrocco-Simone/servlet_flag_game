@@ -1,6 +1,5 @@
 package it.unitn.marrocco.flaggame;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,21 +12,14 @@ import java.util.*;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
-    ServletContext context;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        synchronized (this) {
-            context = getServletContext();
+    public List<UserSession> getLoggedUser() {
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
+            Object loggedAttribute = context.getAttribute("logged");
+            @SuppressWarnings("unchecked")
+            List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
+            return logged;
         }
-    }
-
-    public synchronized List<UserSession> getLoggedUser() {
-        Object loggedAttribute =  context.getAttribute("logged");
-        @SuppressWarnings("unchecked")
-        List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
-        return logged;
     }
 
     @Override

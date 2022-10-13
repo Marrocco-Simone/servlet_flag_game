@@ -1,6 +1,5 @@
 package it.unitn.marrocco.flaggame;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,17 +14,6 @@ import java.util.*;
 @WebServlet(name = "game", value = "/game")
 public class Game extends HttpServlet {
     int CAPITALS_TO_GUESS = 3;
-
-    ServletContext context;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        synchronized (this) {
-            // maybe this should go in the doX
-            context = getServletContext();
-        }
-    }
 
     public ArrayList<String> initCapitals(){
         ArrayList<String> capitals = new ArrayList<>();
@@ -136,7 +124,8 @@ public class Game extends HttpServlet {
         }else {
             if(user.points > 0) user.points -= 1;
         }
-        synchronized (this) {
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
             Object loggedAttribute =  context.getAttribute("logged");
             @SuppressWarnings("unchecked")
             List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;

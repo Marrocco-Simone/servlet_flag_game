@@ -11,9 +11,6 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "main", value = "/index.html")
 public class Main extends HttpServlet {
-
-    ServletContext context;
-
     @Override
     public void init(ServletConfig config) throws ServletException {
         // https://stackoverflow.com/questions/26497241/getservletconfig-getservletcontext-returning-null-value
@@ -25,8 +22,8 @@ public class Main extends HttpServlet {
         users.add(new User("admin", "admin"));
         users.add(new User("simone", "simone"));
 
-        synchronized (this) {
-            context = getServletContext();
+        synchronized (getServletContext()) {
+            ServletContext context = getServletContext();
             context.setAttribute("users", users);
         }
     }
