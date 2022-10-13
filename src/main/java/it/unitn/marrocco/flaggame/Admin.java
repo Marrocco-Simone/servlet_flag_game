@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 @WebServlet(name = "admin", value = "/admin")
@@ -18,6 +17,7 @@ public class Admin extends HttpServlet {
             Object loggedAttribute = context.getAttribute("logged");
             @SuppressWarnings("unchecked")
             List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
+            Collections.sort(logged);
             return logged;
         }
     }
@@ -25,28 +25,7 @@ public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         List<UserSession> logged = getLoggedUser();
-        Collections.sort(logged);
-
-        PrintWriter out = res.getWriter();
-
-        Main.addHtmlFragment(req, res, "fragments/html_file_start.html");
-        out.println("<table>");
-        out.println("<tr>");
-            out.println("<th>Rank</th>");
-            out.println("<th>Username</th>");
-            out.println("<th>Points</th>");
-        out.println("</tr>");
-        int rank = 1;
-        for(UserSession user: logged) {
-            out.println("<tr>");
-                out.println("<td>"+rank+"</td>");
-                out.println("<td>"+user.username+"</td>");
-                out.println("<td>"+user.points+"</td>");
-            out.println("</tr>");
-
-            rank++;
-        }
-        out.println("</table>");
-        Main.addHtmlFragment(req, res, "fragments/html_file_end.html");
+        req.setAttribute("logged", logged);
+        req.getRequestDispatcher("jsp/admin.jsp").forward(req, res);
     }
 }
