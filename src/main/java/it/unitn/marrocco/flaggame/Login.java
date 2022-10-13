@@ -73,6 +73,6 @@ public class Login extends HttpServlet {
             setSession(req, username, context);
         }
 
-        res.sendRedirect("index.html");
+        res.sendRedirect(req.getContextPath());
     }
 }

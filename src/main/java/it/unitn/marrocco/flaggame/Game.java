@@ -106,6 +106,6 @@ public class Game extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("points", user.points);
-        res.sendRedirect("index.html");
+        res.sendRedirect(req.getContextPath());
     }
 }

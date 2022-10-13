@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "main", value = "/index.html")
+@WebServlet(name = "main", value = "")
 public class Main extends HttpServlet {
     public static synchronized List<User> getUsersFromContext(ServletContext context) {
         Object usersAttribute =  context.getAttribute("users");

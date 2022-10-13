@@ -53,6 +53,6 @@ public class Register extends HttpServlet {
             Login.setSession(req, username, context);
         }
 
-        res.sendRedirect("index.html");
+        res.sendRedirect(req.getContextPath());
     }
 }

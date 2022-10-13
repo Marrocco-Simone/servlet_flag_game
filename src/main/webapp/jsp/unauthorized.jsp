@@ -12,6 +12,6 @@
 </head>
 <body>
   <h1>Access denied</h1>
-  <a href='index.html'>Go back to main page</a>
+  <a href='<%=request.getContextPath()%>'>Go back to main page</a>
 </body>
 </html>
