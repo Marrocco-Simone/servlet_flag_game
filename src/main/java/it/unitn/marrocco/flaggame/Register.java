@@ -38,11 +38,6 @@ public class Register extends HttpServlet {
             sendRegisterForm(req, res, "Passwords are not equals");
             return;
         }
-        // character used to save the values in the file
-        if(!password.contains(";")) {
-            sendRegisterForm(req, res, "Sorry, Passwords cannot contain ';'");
-            return;
-        }
 
         List<User> users;
         synchronized (getServletContext()) {

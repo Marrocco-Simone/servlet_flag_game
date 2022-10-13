@@ -13,6 +13,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return this.username + ";" + this.password;
+        return this.username + " -> " + this.password;
     }
 }
