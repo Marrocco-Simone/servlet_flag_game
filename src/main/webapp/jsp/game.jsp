@@ -31,7 +31,7 @@
     <title>Flag Game</title>
 </head>
 <body>
-    <%= Main.getFooter(user.username) %>
+    <footer><%=user.username%></footer>
 
     <p>List of cities</p>
     <ol start='0'>

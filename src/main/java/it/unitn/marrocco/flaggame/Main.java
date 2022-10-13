@@ -20,10 +20,6 @@ public class Main extends HttpServlet {
         return users;
     }
 
-    public static String getFooter(String username) {
-        return "<footer>" + username + "</footer>";
-    }
-
     public static synchronized UserSession getUserSession(HttpServletRequest req, HttpServletResponse res) throws IOException {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
@@ -46,7 +42,7 @@ public class Main extends HttpServlet {
 
         PrintWriter out = res.getWriter();
         addHtmlFragment(req, res, "fragments/html_file_start.html");
-        out.println(getFooter(user.username));
+        out.println("<footer>" + user.username + "</footer>");
 
         out.println("<p>Points: " + user.points + "</p>");
         out.println("<form action='game'><button>Play</button></form>");
