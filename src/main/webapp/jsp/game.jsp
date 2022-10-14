@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body class="game-body">
-    <footer><%=user.username%></footer>
+    <footer><%=user.getUsername()%></footer>
 
     <div class="capitals-list">
         <p>List of cities</p>

@@ -28,8 +28,8 @@
         <% for(UserSession user: logged) { %>
             <tr>
                 <td class="td-number"><%=rank%></td>
-                <td class="td-username"><%=user.username%></td>
-                <td class="td-number"><%=user.points%></td>
+                <td class="td-username"><%=user.getUsername()%></td>
+                <td class="td-number"><%=user.getPoints()%></td>
             </tr>
         <% rank++; %>
         <% } %>
