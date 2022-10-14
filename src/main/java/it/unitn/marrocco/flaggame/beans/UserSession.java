@@ -1,4 +1,4 @@
-package it.unitn.marrocco.flaggame;
+package it.unitn.marrocco.flaggame.beans;
 
 public class UserSession implements Comparable<UserSession> {
     public String username;

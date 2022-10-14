@@ -9,7 +9,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.marrocco.flaggame.Main" %>
 <%@ page import="it.unitn.marrocco.flaggame.Game" %>
-<%@ page import="it.unitn.marrocco.flaggame.UserSession" %>
+<%@ page import="it.unitn.marrocco.flaggame.beans.UserSession" %>
 <%
     @SuppressWarnings("unchecked")
     ArrayList<String> capitals = (ArrayList<String>) request.getAttribute("capitals");

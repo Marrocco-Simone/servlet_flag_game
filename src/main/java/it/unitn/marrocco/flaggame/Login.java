@@ -1,5 +1,8 @@
 package it.unitn.marrocco.flaggame;
 
+import it.unitn.marrocco.flaggame.beans.User;
+import it.unitn.marrocco.flaggame.beans.UserSession;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
