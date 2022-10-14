@@ -31,22 +31,37 @@
     <title>Flag Game</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="game-body">
     <footer><%=user.username%></footer>
 
-    <p>List of cities</p>
-    <ol start='0'>
-        <% for(String capital: capitals) { %>
-        <li><%=capital%></li>
-        <% } %>
-    </ol>
+    <div class="capitals-list">
+        <p>List of cities</p>
+        <ol start='0'>
+            <% for(String capital: capitals) { %>
+            <li><%=capital%></li>
+            <% } %>
+        </ol>
+    </div>
 
-    <form action='game' method='POST'>
+    <form action='game' method='POST' class="game-form">
         <% for(String capital: chosen_capitals){ %>
-            <div><label>
-                <img src='flags/<%=capital%>.png' width='150' height='100' alt='Refresh the page'/>
-                <input name='<%=Game.findCapitalId(capital, capitals)%>' type='number' required min='0' max='<%=max%>'/>
-            </label></div>
+            <div class="game-input">
+                <label for="<%=capital%>">
+                    <img 
+                        src='flags/<%=capital%>.png' 
+                        width='150' 
+                        height='100' 
+                        alt='Refresh the page'
+                    />
+                </label>
+                <input 
+                    id="<%=capital%>"
+                    name='<%=Game.findCapitalId(capital, capitals)%>' 
+                    type='number' 
+                    required min='0' 
+                    max='<%=max%>'
+                />
+            </div>
         <% } %>
         <button type='submit'>Submit Responses</button>
     </form>

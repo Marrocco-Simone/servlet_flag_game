@@ -14,23 +14,29 @@
     <title>Login</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="box-body xx-large">
     <% if (error_msg != null && error_msg.length()>0) { %>
         <p><%=error_msg%></p>
     <% } %>
 
     <form action="login" method="POST">
-        <div>
-            <label>
-                Username
-                <input name="username" type="text" required/>
-            </label>
+        <div class="login-input">
+            <label for="username">Username</label>
+            <input 
+                id="username" 
+                name="username" 
+                type="text" 
+                required
+            />
         </div>
-        <div>
-            <label>
-                Password
-                <input name="password" type="password" required/>
-            </label>
+        <div class="login-input">
+            <label for="password">Password</label>
+            <input 
+                id="password" 
+                name="password" 
+                type="password" 
+                required
+            />
         </div>
         <button type="submit">Submit</button>
         <button type="reset">Reset</button>

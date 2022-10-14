@@ -11,7 +11,7 @@
     <title>Unauthorized</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="box-body">
   <h1>Access denied</h1>
   <a href='<%=request.getContextPath()%>'>Go back to main page</a>
 </body>

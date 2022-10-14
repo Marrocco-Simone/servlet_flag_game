@@ -17,8 +17,8 @@
     <title>Admin Page</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
-    <table>
+<body class="box-body">
+    <table class="admin-table">
         <tr>
             <th>Rank</th>
             <th>Username</th>
@@ -27,9 +27,9 @@
         <% int rank = 1; %>
         <% for(UserSession user: logged) { %>
             <tr>
-                <td><%=rank%></td>
-                <td><%=user.username%></td>
-                <td><%=user.points%></td>
+                <td class="td-number"><%=rank%></td>
+                <td class="td-username"><%=user.username%></td>
+                <td class="td-number"><%=user.points%></td>
             </tr>
         <% rank++; %>
         <% } %>

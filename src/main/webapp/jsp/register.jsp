@@ -14,29 +14,38 @@
     <title>Register</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="box-body xx-large">
     <% if (error_msg != null && error_msg.length()>0) { %>
         <p><%=error_msg%></p>
     <% } %>
 
     <form action="register" method="POST">
-        <div>
-            <label>
-                Username
-                <input name="username" type="text" required/>
-            </label>
+        <div class="login-input">
+            <label for="username">Username</label>
+            <input 
+                id="username" 
+                name="username" 
+                type="text" 
+                required
+            />
         </div>
-        <div>
-            <label>
-                Password
-                <input name="password" type="password" required/>
-            </label>
+        <div class="login-input">
+            <label for="password">Password</label>
+            <input 
+                id="password" 
+                name="password" 
+                type="password" 
+                required
+            />
         </div>
-        <div>
-            <label>
-                Confirm Password
-                <input name="confirm_password" type="password" required/>
-            </label>
+        <div class="login-input">
+            <label for="confirm_password">Confirm Password</label>
+            <input 
+                id="confirm_password" 
+                name="confirm_password" 
+                type="password" 
+                required
+            />
         </div>
         <button type="submit">Submit</button>
         <button type="reset">Reset</button>

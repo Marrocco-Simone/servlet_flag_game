@@ -17,11 +17,11 @@
     <title>Welcome</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="box-body">
     <footer><%=user.username%></footer>
     <p>Points: <%=user.points%></p>
 
-    <form action='game'>
+    <form action='game' class="play-form">
         <button type='submit'>Play</button>
     </form>
 </body>
