@@ -1,12 +1,27 @@
 package it.unitn.marrocco.flaggame.beans;
 
-public class UserSession implements Comparable<UserSession> {
-    public String username;
-    public int points;
+import java.io.Serializable;
+
+public class UserSession implements Comparable<UserSession>, Serializable {
+    private String username;
+    private int points;
 
     public UserSession(String username, int points) {
         this.username = username;
         this.points = points;
+    }
+
+    public int getPoints () {
+        return this.points;
+    }
+    public void setPoints(int points) {
+        this.points = points;
+    }
+    public String getUsername () {
+        return this.username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

@@ -64,7 +64,7 @@ public class Game extends HttpServlet {
         ArrayList<String> capitals = initCapitals();
         ArrayList<String> chosen_capitals = getChosenCapitals(capitals);
 
-        req.setAttribute("username", user.username);
+        req.setAttribute("username", user.getUsername());
         req.setAttribute("capitals", capitals);
         req.setAttribute("chosen_capitals", chosen_capitals);
 
@@ -87,9 +87,9 @@ public class Game extends HttpServlet {
             }
         }
         if(guessed_all) {
-            user.points += 3;
+            user.setPoints(user.getPoints()+3);
         }else {
-            if(user.points > 0) user.points -= 1;
+            if(user.getPoints() > 0) user.setPoints(user.getPoints()-1);
         }
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
@@ -98,8 +98,9 @@ public class Game extends HttpServlet {
             List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
 
             for (UserSession logged_user: logged) {
-                if(logged_user.username.equals(user.username)) {
-                    logged_user.points = user.points;
+                if(logged_user.getUsername().equals(user.getUsername())) {
+                    logged_user.setPoints(user.getPoints());
+                    break;
                 }
             }
 
@@ -107,7 +108,7 @@ public class Game extends HttpServlet {
         }
 
         HttpSession session = req.getSession();
-        session.setAttribute("points", user.points);
+        session.setAttribute("points", user.getPoints());
         res.sendRedirect(req.getContextPath());
     }
 }

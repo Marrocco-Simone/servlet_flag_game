@@ -30,7 +30,7 @@ public class Admin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         UserSession user = Main.getUserSession(req, res);
         if (user == null) return;
-        if (!user.username.equals(ADMIN_USERNAME)) {
+        if (!user.getUsername().equals(ADMIN_USERNAME)) {
             res.setStatus(401);
             req.getRequestDispatcher("jsp/unauthorized.jsp").forward(req, res);
             return;

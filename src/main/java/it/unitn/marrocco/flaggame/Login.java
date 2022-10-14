@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
         if (logged == null) logged = new ArrayList<>();
 
         for (UserSession user: logged) {
-            if(user.username.equals(username)) return;
+            if(user.getUsername().equals(username)) return;
         }
 
         logged.add(new UserSession(username, 0));
