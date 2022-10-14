@@ -10,7 +10,6 @@
 <%@ page import="it.unitn.marrocco.flaggame.beans.UserSession" %>
 <%@ page import="it.unitn.marrocco.flaggame.beans.Capitals" %>
 <%
-    @SuppressWarnings("unchecked")
     Capitals cap = new Capitals();
     UserSession user = Main.getUserSession(request, response);
     if (user == null) return;
