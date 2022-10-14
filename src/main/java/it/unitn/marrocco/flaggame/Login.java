@@ -26,17 +26,16 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("username", username);
         session.setAttribute("points", 0);
+        UserSession new_session = new UserSession(username, 0);
 
         Object loggedAttribute =  context.getAttribute("logged");
         @SuppressWarnings("unchecked")
         List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
         if (logged == null) logged = new ArrayList<>();
 
-        for (UserSession user: logged) {
-            if(user.getUsername().equals(username)) return;
-        }
-
-        logged.add(new UserSession(username, 0));
+        // if the user had already a previous session
+        logged.remove(new_session);
+        logged.add(new_session);
         context.setAttribute("logged", logged);
     }
 

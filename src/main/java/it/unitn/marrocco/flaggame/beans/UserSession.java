@@ -25,6 +25,16 @@ public class UserSession implements Comparable<UserSession>, Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        try {
+            UserSession other_user = (UserSession) obj;
+            return this.getUsername().equals(other_user.getUsername());
+        } catch(ClassCastException e) {
+            return false;
+        }
+    }
+
+    @Override
     public int compareTo(UserSession other_user){
         return other_user.points - this.points;
     }
