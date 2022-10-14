@@ -2,6 +2,7 @@ package it.unitn.marrocco.flaggame.beans;
 
 import java.io.Serializable;
 
+/** user credentials */
 public class User implements Serializable {
     private String username;
     private String password;

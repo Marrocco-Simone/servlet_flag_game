@@ -15,6 +15,7 @@ import java.util.*;
 public class Admin extends HttpServlet {
     public static String ADMIN_USERNAME = "admin";
 
+    /** get the logged object from the servlet context */
     public List<UserSession> getLoggedUser() {
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();

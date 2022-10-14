@@ -22,12 +22,14 @@ public class Login extends HttpServlet {
         sendLoginForm(req, res, "");
     }
 
+    /** create a new session and add it in the context, or modify the previous one */
     public static synchronized void setSession(HttpServletRequest req, String username, ServletContext context){
+        System.out.println("started session for " + username);
+
         Object loggedAttribute =  context.getAttribute("logged");
         @SuppressWarnings("unchecked")
         List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
         if (logged == null) logged = new ArrayList<>();
-        System.out.println("started session for " + username);
 
         HttpSession session = req.getSession();
 

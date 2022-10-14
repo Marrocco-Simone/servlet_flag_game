@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/** class containing capitals in random order and the three chosen for the user to guess */
 public class Capitals implements Serializable {
 
     int CAPITALS_TO_GUESS = 3;
@@ -40,6 +41,7 @@ public class Capitals implements Serializable {
         }
     }
 
+    /** find the id of the given city in the capitals array. -1 if not found */
     public int findCapitalId(String capital) {
         for(int i=0; i<capitals.size(); i++){
             if(capital.equals(capitals.get(i))) return i;
