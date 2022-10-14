@@ -7,8 +7,8 @@ public class UserSession implements Comparable<UserSession>, Serializable {
     private int points;
 
     public UserSession(String username, int points) {
-        this.username = username;
-        this.points = points;
+        setUsername(username);
+        setPoints(points);
     }
 
     public int getPoints () {
