@@ -14,60 +14,8 @@ import java.util.*;
 
 @WebServlet(name = "game", value = "/game")
 public class Game extends HttpServlet {
-    int CAPITALS_TO_GUESS = 3;
-
-    public ArrayList<String> initCapitals(){
-        ArrayList<String> capitals = new ArrayList<>();
-
-        capitals.add("Athens");
-        capitals.add("Beijing");
-        capitals.add("Cairo");
-        capitals.add("Madrid");
-        capitals.add("Paris");
-        capitals.add("Prague");
-        capitals.add("Rome");
-        capitals.add("Seoul");
-        capitals.add("Tokyo");
-        capitals.add("Vienna");
-
-        Collections.shuffle(capitals);
-        return capitals;
-    }
-
-    public ArrayList<String> getChosenCapitals(ArrayList<String> capitals) {
-        ArrayList<String> chosen_capitals = new ArrayList<>();
-        Random rand = new Random();
-
-        while (chosen_capitals.size() < CAPITALS_TO_GUESS) {
-            int i = rand.nextInt(capitals.size());
-            String capital = capitals.get(i);
-            if(!chosen_capitals.contains(capital)){
-                chosen_capitals.add(capital);
-            }
-        }
-
-        return chosen_capitals;
-    }
-
-    public static int findCapitalId(String capital, ArrayList<String> capitals) {
-        for(int i=0; i<capitals.size(); i++){
-            if(capital.equals(capitals.get(i))) return i;
-        }
-        return -1;
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        UserSession user = Main.getUserSession(req, res);
-        if (user == null) return;
-
-        ArrayList<String> capitals = initCapitals();
-        ArrayList<String> chosen_capitals = getChosenCapitals(capitals);
-
-        req.setAttribute("username", user.getUsername());
-        req.setAttribute("capitals", capitals);
-        req.setAttribute("chosen_capitals", chosen_capitals);
-
         req.getRequestDispatcher("jsp/game.jsp").forward(req, res);
     }
 
