@@ -34,11 +34,12 @@ public class Game extends HttpServlet {
                 break;
             }
         }
-        if(guessed_all) {
-            user.setPoints(user.getPoints()+3);
-        }else {
-            if(user.getPoints() > 0) user.setPoints(user.getPoints()-1);
-        }
+
+        int added_points = 0;
+        if(guessed_all) added_points = 3;
+        else if(user.getPoints() > 0) added_points = -1;
+        user.setPoints(user.getPoints() + added_points);
+
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
             Object loggedAttribute =  context.getAttribute("logged");
@@ -52,6 +53,9 @@ public class Game extends HttpServlet {
                 }
             }
 
+            System.out.println(user.getUsername() + " made " + added_points + " points");
+            System.out.println("new context: " + logged);
+            System.out.println();
             context.setAttribute("logged", logged);
         }
 
