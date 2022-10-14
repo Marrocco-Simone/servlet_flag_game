@@ -16,6 +16,7 @@ public class SessionListener implements HttpSessionListener {
     public void sessionDestroyed(HttpSessionEvent se) {
         HttpSession old_session = se.getSession();
         String username = (String) old_session.getAttribute("username");
+        System.out.println("Finished session for " + username);
         UserSession old_user_session = new UserSession(username, 0);
 
         synchronized (old_session.getServletContext()) {
@@ -24,6 +25,8 @@ public class SessionListener implements HttpSessionListener {
             @SuppressWarnings("unchecked")
             List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
             logged.remove(old_user_session);
+            System.out.println("new context: " + logged);
+            System.out.println();
             context.setAttribute("logged", logged);
         }
     }

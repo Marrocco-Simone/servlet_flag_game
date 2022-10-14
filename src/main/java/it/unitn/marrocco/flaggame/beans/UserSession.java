@@ -2,6 +2,7 @@ package it.unitn.marrocco.flaggame.beans;
 
 import java.io.Serializable;
 
+/** user data to save in the session, containing username and points */
 public class UserSession implements Comparable<UserSession>, Serializable {
     private String username;
     private int points;
@@ -37,5 +38,10 @@ public class UserSession implements Comparable<UserSession>, Serializable {
     @Override
     public int compareTo(UserSession other_user){
         return other_user.points - this.points;
+    }
+
+    @Override
+    public String toString() {
+        return this.username + ": " + this.points;
     }
 }

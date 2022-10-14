@@ -23,19 +23,29 @@ public class Login extends HttpServlet {
     }
 
     public static synchronized void setSession(HttpServletRequest req, String username, ServletContext context){
-        HttpSession session = req.getSession();
-        session.setAttribute("username", username);
-        session.setAttribute("points", 0);
-        UserSession new_session = new UserSession(username, 0);
-
         Object loggedAttribute =  context.getAttribute("logged");
         @SuppressWarnings("unchecked")
         List<UserSession> logged = (ArrayList<UserSession>) loggedAttribute;
         if (logged == null) logged = new ArrayList<>();
+        System.out.println("started session for " + username);
 
-        // if the user had already a previous session
-        logged.remove(new_session);
+        HttpSession session = req.getSession();
+
+        // if the user already had a session
+        String old_username = (String) session.getAttribute("username");
+        if (old_username != null) {
+            System.out.println("old login to delete: " + old_username);
+            UserSession old_session = new UserSession(old_username, 0);
+            logged.remove(old_session);
+        }
+
+        session.setAttribute("username", username);
+        session.setAttribute("points", 0);
+        UserSession new_session = new UserSession(username, 0);
+
         logged.add(new_session);
+        System.out.println("new context: " + logged);
+        System.out.println();
         context.setAttribute("logged", logged);
     }
 
