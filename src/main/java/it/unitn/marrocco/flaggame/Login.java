@@ -54,9 +54,9 @@ public class Login extends HttpServlet {
         boolean found = false;
         while (iter.hasNext()) {
             User user = iter.next();
-            if (user.username.equals(username)) {
+            if (user.getUsername().equals(username)) {
                 found = true;
-                if (!user.password.equals(password)) {
+                if (!user.getPassword().equals(password)) {
                     // password not correct
                     sendLoginForm(req, res, "Password not correct");
                     return;

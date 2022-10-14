@@ -42,7 +42,7 @@ public class Register extends HttpServlet {
 
         // check the user does not already exist
         for (User user : users) {
-            if (user.username.equals(username)) {
+            if (user.getUsername().equals(username)) {
                 sendRegisterForm(req, res, "User already exists");
                 return;
             }
