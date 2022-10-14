@@ -20,7 +20,7 @@ public class Game extends HttpServlet {
         capitals.add("Athens");
         capitals.add("Beijing");
         capitals.add("Cairo");
-        capitals.add("New_Delhi");
+        capitals.add("Madrid");
         capitals.add("Paris");
         capitals.add("Prague");
         capitals.add("Rome");
