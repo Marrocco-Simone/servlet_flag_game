@@ -13,7 +13,7 @@ import java.util.*;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
-    static String ADMIN_USERNAME = "admin";
+    public static String ADMIN_USERNAME = "admin";
 
     public List<UserSession> getLoggedUser() {
         synchronized (getServletContext()) {

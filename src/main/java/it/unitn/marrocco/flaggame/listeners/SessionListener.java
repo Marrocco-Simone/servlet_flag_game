@@ -1,4 +1,4 @@
-package it.unitn.marrocco.flaggame;
+package it.unitn.marrocco.flaggame.listeners;
 
 import it.unitn.marrocco.flaggame.beans.UserSession;
 

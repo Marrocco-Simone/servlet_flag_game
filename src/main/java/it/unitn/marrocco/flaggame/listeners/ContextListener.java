@@ -1,5 +1,7 @@
-package it.unitn.marrocco.flaggame;
+package it.unitn.marrocco.flaggame.listeners;
 
+import it.unitn.marrocco.flaggame.Admin;
+import it.unitn.marrocco.flaggame.Main;
 import it.unitn.marrocco.flaggame.beans.User;
 
 import javax.servlet.ServletContext;
