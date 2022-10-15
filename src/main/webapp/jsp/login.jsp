@@ -42,6 +42,6 @@
         <button type="reset">Reset</button>
     </form>
 
-    <a href='register'>Register New Account</a>
+    <a href="register">Register New Account</a>
 </body>
 </html>

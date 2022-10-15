@@ -13,6 +13,6 @@
 </head>
 <body class="box-body">
   <h1>Access denied</h1>
-  <a href='<%=request.getContextPath()%>'>Go back to main page</a>
+  <a href="<%=request.getContextPath()%>">Go back to main page</a>
 </body>
 </html>

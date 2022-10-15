@@ -21,8 +21,8 @@
     <header><%=userCredentials.getUsername()%></header>
     <p>Points: <%=userCredentials.getPoints()%></p>
 
-    <form action='game' class="play-form">
-        <button type='submit'>Play</button>
+    <form action="game" class="play-form">
+        <button type="submit">Play</button>
     </form>
 </body>
 </html>

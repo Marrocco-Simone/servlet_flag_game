@@ -24,34 +24,34 @@
 
     <div class="capitals-list">
         <p>List of cities</p>
-        <ol start='0'>
+        <ol start="0">
             <% for(String capital: cap.getCapitals()) { %>
             <li><%=capital%></li>
             <% } %>
         </ol>
     </div>
 
-    <form action='game' method='POST' class="game-form">
+    <form action="game" method="POST" class="game-form">
         <% for(String capital: cap.getChosenCapitals()){ %>
             <div class="game-input">
                 <label for="<%=capital%>">
                     <img 
-                        src='flags/<%=capital%>.png' 
-                        width='150' 
-                        height='100' 
-                        alt='Refresh the page'
+                        src="flags/<%=capital%>.png" 
+                        width="150" 
+                        height="100" 
+                        alt="Refresh the page"
                     />
                 </label>
                 <input 
                     id="<%=capital%>"
-                    name='<%=cap.findCapitalId(capital)%>'
-                    type='number' 
-                    required min='0' 
-                    max='<%=cap.getNCapitals()%>'
+                    name="<%=cap.findCapitalId(capital)%>"
+                    type="number" 
+                    required min="0" 
+                    max="<%=cap.getNCapitals()%>"
                 />
             </div>
         <% } %>
-        <button type='submit'>Submit Responses</button>
+        <button type="submit">Submit Responses</button>
     </form>
 </body>
 </html>
