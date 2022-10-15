@@ -1,7 +1,6 @@
 package it.unitn.marrocco.flaggame.listeners;
 
 import it.unitn.marrocco.flaggame.Admin;
-import it.unitn.marrocco.flaggame.Main;
 import it.unitn.marrocco.flaggame.beans.User;
 
 import javax.servlet.ServletContext;
@@ -20,6 +19,13 @@ import java.util.List;
 @WebListener
 public class ContextListener implements ServletContextListener {
     String FILENAME = "Users.txt";
+
+    public static synchronized List<User> getUsersFromContext(ServletContext context) {
+        Object usersAttribute =  context.getAttribute("users");
+        @SuppressWarnings("unchecked")
+        List<User> users = (List<User>) usersAttribute;
+        return users;
+    }
 
     /** if there is an error reading FILENAME, initialize the servlet as new with standard users */
     public void startNewServer(List<User> users, String error_msg) {
@@ -67,7 +73,7 @@ public class ContextListener implements ServletContextListener {
         List<User> users;
         synchronized (contextEvent.getServletContext()) {
             ServletContext context = contextEvent.getServletContext();
-            users = Main.getUsersFromContext(context);
+            users = getUsersFromContext(context);
         }
         System.out.println("Users:\n" + users);
 

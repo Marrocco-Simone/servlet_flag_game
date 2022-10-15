@@ -2,6 +2,7 @@ package it.unitn.marrocco.flaggame;
 
 import it.unitn.marrocco.flaggame.beans.User;
 import it.unitn.marrocco.flaggame.beans.UserSession;
+import it.unitn.marrocco.flaggame.listeners.ContextListener;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -59,7 +60,7 @@ public class Login extends HttpServlet {
         List<User> users;
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
-            users = Main.getUsersFromContext(context);
+            users = ContextListener.getUsersFromContext(context);
         }
         Iterator<User> iter = users.iterator();
         boolean found = false;

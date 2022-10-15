@@ -1,24 +1,14 @@
 package it.unitn.marrocco.flaggame;
 
-import it.unitn.marrocco.flaggame.beans.User;
 import it.unitn.marrocco.flaggame.beans.UserSession;
 
 import java.io.*;
-import java.util.List;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(name = "main", value = "")
 public class Main extends HttpServlet {
-    public static synchronized List<User> getUsersFromContext(ServletContext context) {
-        Object usersAttribute =  context.getAttribute("users");
-        @SuppressWarnings("unchecked")
-        List<User> users = (List<User>) usersAttribute;
-        return users;
-    }
-
     public static synchronized UserSession getUserSession(HttpServletRequest req, HttpServletResponse res) throws IOException {
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");

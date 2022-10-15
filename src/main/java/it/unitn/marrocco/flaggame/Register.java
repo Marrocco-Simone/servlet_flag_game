@@ -1,6 +1,7 @@
 package it.unitn.marrocco.flaggame;
 
 import it.unitn.marrocco.flaggame.beans.User;
+import it.unitn.marrocco.flaggame.listeners.ContextListener;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,7 +38,7 @@ public class Register extends HttpServlet {
         List<User> users;
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
-            users = Main.getUsersFromContext(context);
+            users = ContextListener.getUsersFromContext(context);
         }
 
         // check the user does not already exist
