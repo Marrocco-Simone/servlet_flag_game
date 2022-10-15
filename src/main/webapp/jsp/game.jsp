@@ -11,8 +11,8 @@
 <%@ page import="it.unitn.marrocco.flaggame.beans.Capitals" %>
 <%
     Capitals cap = new Capitals();
-    UserSession user = Main.getUserSession(request, response);
-    if (user == null) return;
+    UserSession userCredentials = Main.getUserSession(request, response);
+    if (userCredentials == null) return;
 %>
 <html>
 <head>
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body class="game-body">
-    <header><%=user.getUsername()%></header>
+    <header><%=userCredentials.getUsername()%></header>
 
     <div class="capitals-list">
         <p>List of cities</p>

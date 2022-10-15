@@ -25,11 +25,11 @@
             <th>Points</th>
         </tr>
         <% int rank = 1; %>
-        <% for(UserSession user: logged) { %>
+        <% for(UserSession userCredentials: logged) { %>
             <tr>
                 <td class="td-number"><%=rank%></td>
-                <td class="td-username"><%=user.getUsername()%></td>
-                <td class="td-number"><%=user.getPoints()%></td>
+                <td class="td-username"><%=userCredentials.getUsername()%></td>
+                <td class="td-number"><%=userCredentials.getPoints()%></td>
             </tr>
         <% rank++; %>
         <% } %>

@@ -1,6 +1,6 @@
 package it.unitn.marrocco.flaggame;
 
-import it.unitn.marrocco.flaggame.beans.User;
+import it.unitn.marrocco.flaggame.beans.UserCredentials;
 import it.unitn.marrocco.flaggame.beans.UserSession;
 
 import javax.servlet.ServletContext;
@@ -22,11 +22,11 @@ public class Login extends HttpServlet {
         sendLoginForm(req, res, "");
     }
 
-    public static synchronized List<User> getUsersFromContext(ServletContext context) {
+    public static synchronized List<UserCredentials> getUsersFromContext(ServletContext context) {
         Object usersAttribute =  context.getAttribute("users");
         @SuppressWarnings("unchecked")
-        List<User> users = (List<User>) usersAttribute;
-        return users;
+        List<UserCredentials> userCredentials = (List<UserCredentials>) usersAttribute;
+        return userCredentials;
     }
 
     /** create a new session and add it in the context, or modify the previous one */
@@ -63,15 +63,15 @@ public class Login extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        List<User> users;
+        List<UserCredentials> userCredentials;
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
-            users = getUsersFromContext(context);
+            userCredentials = getUsersFromContext(context);
         }
-        Iterator<User> iter = users.iterator();
+        Iterator<UserCredentials> iter = userCredentials.iterator();
         boolean found = false;
         while (iter.hasNext()) {
-            User user = iter.next();
+            UserCredentials user = iter.next();
             if (user.getUsername().equals(username)) {
                 found = true;
                 if (!user.getPassword().equals(password)) {

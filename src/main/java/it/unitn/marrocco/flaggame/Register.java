@@ -1,6 +1,6 @@
 package it.unitn.marrocco.flaggame;
 
-import it.unitn.marrocco.flaggame.beans.User;
+import it.unitn.marrocco.flaggame.beans.UserCredentials;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -34,24 +34,24 @@ public class Register extends HttpServlet {
             return;
         }
 
-        List<User> users;
+        List<UserCredentials> userCredentials;
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
-            users = Login.getUsersFromContext(context);
+            userCredentials = Login.getUsersFromContext(context);
         }
 
         // check the user does not already exist
-        for (User user : users) {
+        for (UserCredentials user : userCredentials) {
             if (user.getUsername().equals(username)) {
                 sendRegisterForm(req, res, "User already exists");
                 return;
             }
         }
 
-        users.add(new User(username, password));
+        userCredentials.add(new UserCredentials(username, password));
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
-            context.setAttribute("users", users);
+            context.setAttribute("users", userCredentials);
             Login.setSession(req, username, context);
         }
 

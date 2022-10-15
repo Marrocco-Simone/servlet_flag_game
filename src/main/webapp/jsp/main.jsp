@@ -9,8 +9,8 @@
 <%@ page import="it.unitn.marrocco.flaggame.beans.UserSession" %>
 <%@ page import="it.unitn.marrocco.flaggame.Main" %>
 <%
-    UserSession user = Main.getUserSession(request, response);
-    if (user == null) return;
+    UserSession userCredentials = Main.getUserSession(request, response);
+    if (userCredentials == null) return;
 %>
 <html>
 <head>
@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body class="box-body">
-    <header><%=user.getUsername()%></header>
-    <p>Points: <%=user.getPoints()%></p>
+    <header><%=userCredentials.getUsername()%></header>
+    <p>Points: <%=userCredentials.getPoints()%></p>
 
     <form action='game' class="play-form">
         <button type='submit'>Play</button>

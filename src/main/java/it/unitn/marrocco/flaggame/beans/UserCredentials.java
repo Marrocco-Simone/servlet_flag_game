@@ -3,11 +3,11 @@ package it.unitn.marrocco.flaggame.beans;
 import java.io.Serializable;
 
 /** user credentials */
-public class User implements Serializable {
+public class UserCredentials implements Serializable {
     private String username;
     private String password;
 
-    public User(String username, String password) {
+    public UserCredentials(String username, String password) {
         setUsername(username);
         setPassword(password);
     }
