@@ -121,6 +121,7 @@ button:hover {
 
 .capitals-list {
     height: 65%;
+    width: 50%;
 }
 
 .game-input {
@@ -137,4 +138,5 @@ button:hover {
 }
 .game-input input {
     font-size: x-large;
+    width: 30%;
 }
