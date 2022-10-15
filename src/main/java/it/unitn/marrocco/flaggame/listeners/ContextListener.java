@@ -24,7 +24,7 @@ public class ContextListener implements ServletContextListener {
     /** if there is an error reading FILENAME, initialize the servlet as new with standard users */
     public void startNewServer(List<User> users, String error_msg) {
         System.out.println(error_msg + ". Inserting standard users...");
-        users.add(new User(Admin.ADMIN_USERNAME, "admin"));
+        users.add(new User(Admin.ADMIN_USERNAME, "nimda"));
         users.add(new User("simone", "simone"));
     }
     
