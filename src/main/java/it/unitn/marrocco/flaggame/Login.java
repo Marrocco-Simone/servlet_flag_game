@@ -2,7 +2,6 @@ package it.unitn.marrocco.flaggame;
 
 import it.unitn.marrocco.flaggame.beans.User;
 import it.unitn.marrocco.flaggame.beans.UserSession;
-import it.unitn.marrocco.flaggame.listeners.ContextListener;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,6 +20,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         sendLoginForm(req, res, "");
+    }
+
+    public static synchronized List<User> getUsersFromContext(ServletContext context) {
+        Object usersAttribute =  context.getAttribute("users");
+        @SuppressWarnings("unchecked")
+        List<User> users = (List<User>) usersAttribute;
+        return users;
     }
 
     /** create a new session and add it in the context, or modify the previous one */
@@ -60,7 +66,7 @@ public class Login extends HttpServlet {
         List<User> users;
         synchronized (getServletContext()) {
             ServletContext context = getServletContext();
-            users = ContextListener.getUsersFromContext(context);
+            users = getUsersFromContext(context);
         }
         Iterator<User> iter = users.iterator();
         boolean found = false;
