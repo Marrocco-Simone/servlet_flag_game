@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body class="game-body">
-    <footer><%=user.getUsername()%></footer>
+    <header><%=user.getUsername()%></header>
 
     <div class="capitals-list">
         <p>List of cities</p>

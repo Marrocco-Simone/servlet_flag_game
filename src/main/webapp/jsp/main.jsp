@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body class="box-body">
-    <footer><%=user.getUsername()%></footer>
+    <header><%=user.getUsername()%></header>
     <p>Points: <%=user.getPoints()%></p>
 
     <form action='game' class="play-form">
